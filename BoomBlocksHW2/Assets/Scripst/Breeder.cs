@@ -1,51 +1,26 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Breeder : MonoBehaviour
 {
-    [SerializeField] private Block _blockPrefabs;
+    [SerializeField] private RayCaster _rayCaster;
+    [SerializeField] private Spawner spawner;
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Нажал мышку");
-
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-
-                if (hit.collider.gameObject.TryGetComponent<Block>(out _blockPrefabs))
-                {
-                    GameObject block = hit.collider.gameObject;
-                    
-                    SpawnBlocks(block);
-                    HideBlock(hit);
-                }
-                else
-                {
-                    return;
-                }
-            }
-
-        }
+        _rayCaster.Hit += OnHit;
     }
 
-    private void HideBlock(RaycastHit hit)
+    private void OnDisable()
     {
-        Destroy(hit.collider.gameObject);
+        _rayCaster.Hit -= OnHit;
     }
 
-    private void SpawnBlocks(GameObject block)
+    private void OnHit(RaycastHit raycastHit)
     {
-        for (int i = 0; i < 3; i++)
+        if (raycastHit.collider.TryGetComponent<Block>(out Block block))
         {
-            var spawnBlock = Instantiate(block, block.transform.position, Quaternion.identity);
-
-            //spawnBlock.GetComponent<Block>();
-            spawnBlock.transform.localScale *= 0.5f;
-
+            List<Block> blocks = spawner.SpawnBlocks(5, block);
         }
     }
 }

@@ -355,6 +355,10 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripst/Block.cs"
 "Assets/Scripst/Breeder.cs"
+"Assets/Scripst/Exploader.cs"
+"Assets/Scripst/InputReader.cs"
+"Assets/Scripst/RayCaster.cs"
+"Assets/Scripst/Spawner.cs"
 -langversion:9.0
 /deterministic
 /optimize+
