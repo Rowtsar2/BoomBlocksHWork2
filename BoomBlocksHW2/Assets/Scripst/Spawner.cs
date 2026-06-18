@@ -15,15 +15,15 @@ public class Spawner : MonoBehaviour
         {
             var spawnBlock = Instantiate(_blockPrefabs, block.transform.position, Quaternion.identity);
             spawnBlock.transform.localScale = block.transform.localScale * reducingSize;
+            spawnBlock.GetComponent<Renderer>().material.color = Random.ColorHSV();
             blocks.Add(spawnBlock);
         }
 
         return blocks;
     }
+
     public void RemoveBlock(Block block)
     {
         Destroy(block.gameObject);
-        Random.ColorHSV();
-
     }
 }

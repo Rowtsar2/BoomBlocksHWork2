@@ -4,6 +4,7 @@ using UnityEngine;
 public class RayCaster : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
+    [SerializeField] private LayerMask _layerMask;
 
     public event Action<RaycastHit> Hit;
 
@@ -22,7 +23,7 @@ public class RayCaster : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, _layerMask))
         {
             Hit?.Invoke(hit);
         }
