@@ -7,9 +7,6 @@ public class Breeder : MonoBehaviour
     [SerializeField] private Spawner _spawner;
     [SerializeField] private Exploader _exploader;
 
-    private float _chanceSpawn = 100f;
-    private float _maxChanceSpawn = 100f;
-
     private void OnEnable()
     {
         _rayCaster.Hit += OnHit;
@@ -24,10 +21,10 @@ public class Breeder : MonoBehaviour
     {
         if (raycastHit.collider.TryGetComponent<Block>(out Block block))
         {
-            if (IsSpawn())
+            if (IsSpawn(block))
             {
                 List<Block> blocks = _spawner.SpawnBlocks(GetRandomCount(), block);
-                _exploader.Expload(block);
+                _exploader.Expload(blocks, block);
                 _spawner.RemoveBlock(block);
             }
             else
@@ -45,21 +42,18 @@ public class Breeder : MonoBehaviour
         return Random.Range(minValue, maxValue);
     }
 
-    private bool IsSpawn()
+    private bool IsSpawn(Block block)
     {
-        float split = 2f;
+        float maxChanceSpawn = 100 + 1f;
 
-        if (_maxChanceSpawn == _chanceSpawn)
+        if (maxChanceSpawn == block.ChanceSeparation)
         {
-            _chanceSpawn /= split;
-
             return true;
         }
         else
         {
-            if (Random.Range(0, _maxChanceSpawn + 1) <= _chanceSpawn)
+            if (Random.Range(0, maxChanceSpawn) <= block.ChanceSeparation)
             {
-                _chanceSpawn /= split;
                 return true;
             }
             else
