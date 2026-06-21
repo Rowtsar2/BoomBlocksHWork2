@@ -10,7 +10,7 @@ public class Exploader : MonoBehaviour
     {
         foreach (var exploableBlocks in blocks)
         {
-            exploableBlocks.GetComponent<Rigidbody>().AddExplosionForce(_explosionForce, clicableBlock.transform.position, _explosionRadius);
+            exploableBlocks.GetRigidbody.AddExplosionForce(_explosionForce, clicableBlock.transform.position, _explosionRadius);
         }
     }
 }

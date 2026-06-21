@@ -46,20 +46,6 @@ public class Breeder : MonoBehaviour
     {
         float maxChanceSpawn = 100 + 1f;
 
-        if (maxChanceSpawn == block.ChanceSeparation)
-        {
-            return true;
-        }
-        else
-        {
-            if (Random.Range(0, maxChanceSpawn) <= block.ChanceSeparation)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        return Random.Range(0, maxChanceSpawn) <= block.ChanceSeparation;
     }
 }
