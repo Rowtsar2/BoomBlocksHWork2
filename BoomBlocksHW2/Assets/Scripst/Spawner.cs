@@ -8,7 +8,8 @@ public class Spawner : MonoBehaviour
     public List<Block> SpawnBlocks(int coutBlocks, Block block)
     {
         float reducingSize = 0.5f;
-        float separationValue = 2;
+        float separationValue = 2f;
+        float additionalForceExplosion = 1f;
 
         List<Block> blocks = new List<Block>();
 
@@ -16,7 +17,12 @@ public class Spawner : MonoBehaviour
         {
             Block spawnBlock = Instantiate(_blockPrefabs, block.transform.position, Quaternion.identity);
 
-            spawnBlock.Initialize(Random.ColorHSV(), block.transform.localScale * reducingSize, block.ChanceSeparation / separationValue);
+            spawnBlock.Initialize(
+                Random.ColorHSV(),
+                block.transform.localScale * reducingSize,
+                block.ChanceSeparation / separationValue,
+                block.PowerExplosion + additionalForceExplosion
+                );
 
             blocks.Add(spawnBlock);
         }

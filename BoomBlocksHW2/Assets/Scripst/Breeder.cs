@@ -5,7 +5,7 @@ public class Breeder : MonoBehaviour
 {
     [SerializeField] private RayCaster _rayCaster;
     [SerializeField] private Spawner _spawner;
-    [SerializeField] private Exploader _exploader;
+    [SerializeField] private Exploder _exploder;
 
     private void OnEnable()
     {
@@ -24,11 +24,12 @@ public class Breeder : MonoBehaviour
             if (IsSpawn(block))
             {
                 List<Block> blocks = _spawner.SpawnBlocks(GetRandomCount(), block);
-                _exploader.Expload(blocks, block);
+                _exploder.Explode(blocks, block);
                 _spawner.RemoveBlock(block);
             }
             else
             {
+                _exploder.ExplodeFailedSeparation(block);
                 _spawner.RemoveBlock(block);
             }
         }

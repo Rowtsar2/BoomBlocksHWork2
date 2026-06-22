@@ -486,7 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rayCaster: {fileID: 723549371}
   _spawner: {fileID: 723549372}
-  _exploader: {fileID: 723549374}
+  _exploder: {fileID: 723549374}
 --- !u!114 &723549371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,8 +540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b051ebbdf1b12394094c84d6a26fbfe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionRadius: 242.44
-  _explosionForce: 145.3
+  _explosionRadius: 8
+  _explosionForce: 150
 --- !u!1001 &959101812
 PrefabInstance:
   m_ObjectHideFlags: 0
